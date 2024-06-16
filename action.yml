@@ -1,0 +1,52 @@
+name: 'PowerShell Notebook Action'
+
+description: 'Invoke PowerShell Notebooks as part of your pipeline'
+
+branding:
+  icon: 'briefcase'
+  color: 'red'
+
+inputs:
+  NotebookPath:
+    description: 'path of the Notebook to invoke'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - shell: pwsh
+      id: InvokeNotebook
+      run: |
+
+
+        try {
+          if ($IsWindows) {
+            $env:PSModulePath += ";$($env:GITHUB_ACTION_PATH)\Modules"
+          } else {
+            $env:PSModulePath += ":$($env:GITHUB_ACTION_PATH)\Modules" 
+          }
+          
+          Import-Module PowerShellNotebook
+
+          # splat parameters
+          $inputParam = @{
+            Path = '${{ inputs.NotebookPath }}'
+          }
+
+          Write-Output "::Group::InvokeNotebook"
+          & $env:GITHUB_ACTION_PATH\Notebook-Runner.ps1 @inputParam | Write-Output
+
+          # Write to standard output
+          # Write-Output "::notice::Result: $($res -join ',')"
+          Write-Output "::endgroup::"
+
+          ## Set environment variables - works in the same job
+          # "IconsOutput=$($res -join ',')" >> $env:GITHUB_ENV
+
+          ## Set output variables
+          #"IconResult=$($res -join ',')" >> $env:GITHUB_OUTPUT
+        }
+        catch {
+          Write-Output "::error::Failed to run!"
+          $_ | fl | Write-Output
+        }
