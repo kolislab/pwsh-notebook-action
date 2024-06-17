@@ -1,0 +1,24 @@
+{
+    "name": "pwsh-notebook-action",
+    "version": "1.0.0",
+    "description": "Invoke PowerShell Notebooks as part of your pipelin",
+    "main": "Notebook-Runner.ps1",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/sassdawe/pwsh-notebook-action.git"
+    },
+    "keywords": [],
+    "author": "Sass, David",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/sassdawe/pwsh-notebook-action/issues"
+    },
+    "homepage": "https://github.com/sassdawe/pwsh-notebook-action#readme",
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+  }
