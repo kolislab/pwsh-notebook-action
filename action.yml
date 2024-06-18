@@ -4,12 +4,10 @@ author: 'sassdawe'
 branding:
   icon: 'briefcase'
   color: 'red'
-
 inputs:
   NotebookPath:
     description: 'path of the Notebook to invoke'
     required: true
-
 runs:
   using: "composite"
   steps:
