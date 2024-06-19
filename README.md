@@ -8,11 +8,12 @@ This Action was created to enable easy execution of jupyter notebooks as part of
 
 ### NotebookPath
 
-Path of the notebook to be executed
+**Required** Path of the notebook to be executed
 
 ## Example usage
 
 ```yaml
+name: Pwsh Notebook Action
 uses: sassdawe/pwsh-notebook-action@v1
 id: InvokeNotebook
 with:
