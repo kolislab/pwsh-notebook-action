@@ -15,14 +15,6 @@ runs:
       id: InvokeNotebook
       run: |
         try {
-          if ($IsWindows) {
-            $env:PSModulePath += ";$($env:GITHUB_ACTION_PATH)\Modules"
-          } else {
-            $env:PSModulePath += ":$($env:GITHUB_ACTION_PATH)\Modules" 
-          }
-          
-          Import-Module PowerShellNotebook
-
           # splat parameters
           $inputParam = @{
             Path = '${{ inputs.NotebookPath }}'
